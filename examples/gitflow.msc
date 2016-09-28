@@ -1,0 +1,28 @@
+
+# just a example drawing
+
+msc {
+
+    arcgradient = 15;
+
+    feature,
+    develop,
+    release,
+    hotfix,
+    master;
+
+    |||;
+
+    master => develop [ label = "sprint\nstart" ];
+    develop => feature;
+    feature => develop [ label = "pull\nrequest" ];
+
+    master => hotfix;
+    hotfix => master;
+
+    develop => release [ label = "sprint\nend" ];
+    release => master [ label = "team\nrelease" ];
+
+
+
+}

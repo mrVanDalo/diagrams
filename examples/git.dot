@@ -1,0 +1,11 @@
+
+# an example dot file
+
+digraph G {
+
+  origin -> remote_a
+  remote_a -> remote_b
+  origin -> remote_b
+  origin -> remote_c 
+
+}
