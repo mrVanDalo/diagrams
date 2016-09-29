@@ -11,7 +11,7 @@ This project is meant to be a blueprint project.
 # How to use ?
 
 You just put a file ending .msc or .dot in this folder
-and there will be rake job generated to render
+or subfolders and there will be rake job generated to render
 png and svg files.
 
 # How to build ?
