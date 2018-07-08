@@ -1,0 +1,19 @@
+
+blockdiag {
+
+
+  A -> B, C;
+
+  group {
+      shape = line;
+      color = blue;
+
+    A;
+    group {
+      shape = line;
+      color = green;
+      C;
+    }
+  }
+}
+

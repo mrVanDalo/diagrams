@@ -1,4 +1,5 @@
 irb.log
+*.swp
 .idea
 *.svg
 *.png

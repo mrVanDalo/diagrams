@@ -3,8 +3,7 @@
 # configuration
 #
 
-@font   = "/usr/share/fonts/75dpi/charB12.pcf.gz"
-@viewer = "xview" # just comment out if you don't want the viewr task
+@viewer = "feh" # just comment out if you don't want the viewr task
 
 #
 # default task
@@ -74,14 +73,101 @@ Dir['**/*.msc'].each do |msc_file|
 
 
   task svg_file do
-    sh "mscgen -F #{@font} -T svg -o #{name}.svg #{msc_file}"
+    sh "mscgen -T svg -o #{name}.svg #{msc_file}"
   end
 
   task png_file do
-    sh "mscgen -F #{@font} -T png -o #{name}.png #{msc_file}"
+    sh "mscgen -T png -o #{name}.png #{msc_file}"
   end
 
   rest_tasks(name, msc_file, png_file, svg_file)
 
 end
 
+#
+# tasks for blockdiag files
+#
+Dir['**/*.diag'].each do |diag_file|
+
+  name      = diag_file[0..-6]
+  svg_file  = "#{name}.svg"
+  png_file  = "#{name}.png"
+
+
+  task svg_file do
+    sh "blockdiag -Tsvg -o #{name}.svg #{diag_file}"
+  end
+
+  task png_file do
+    sh "blockdiag --no-transparency -Tpng -o #{name}.png #{diag_file}"
+  end
+
+  rest_tasks(name, diag_file, png_file, svg_file)
+
+end
+
+#
+# tasks for nwdiag files
+#
+Dir['**/*.nwdiag'].each do |diag_file|
+
+  name      = diag_file[0..-8]
+  svg_file  = "#{name}.svg"
+  png_file  = "#{name}.png"
+
+
+  task svg_file do
+    sh "nwdiag -Tsvg -o #{name}.svg #{diag_file}"
+  end
+
+  task png_file do
+    sh "nwdiag --no-transparency -Tpng -o #{name}.png #{diag_file}"
+  end
+
+  rest_tasks(name, diag_file, png_file, svg_file)
+
+end
+
+#
+# tasks for seqdiag files
+#
+Dir['**/*.seqdiag'].each do |diag_file|
+
+  name      = diag_file[0..-9]
+  svg_file  = "#{name}.svg"
+  png_file  = "#{name}.png"
+
+
+  task svg_file do
+    sh "seqdiag -Tsvg -o #{name}.svg #{diag_file}"
+  end
+
+  task png_file do
+    sh "seqdiag --no-transparency -Tpng -o #{name}.png #{diag_file}"
+  end
+
+  rest_tasks(name, diag_file, png_file, svg_file)
+
+end
+
+#
+# tasks for actdiag files
+#
+Dir['**/*.actdiag'].each do |diag_file|
+
+  name      = diag_file[0..-9]
+  svg_file  = "#{name}.svg"
+  png_file  = "#{name}.png"
+
+
+  task svg_file do
+    sh "actdiag -Tsvg -o #{name}.svg #{diag_file}"
+  end
+
+  task png_file do
+    sh "actdiag --no-transparency -Tpng -o #{name}.png #{diag_file}"
+  end
+
+  rest_tasks(name, diag_file, png_file, svg_file)
+
+end
