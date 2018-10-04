@@ -24,11 +24,21 @@ def rest_tasks(name, file, png_file, svg_file)
   task name => svg_file
 
   if @viewer
+
     show_name = "view_#{name}"
     desc "#{@viewer} ./#{png_file}"
     task show_name => png_file do
       sh "#{@viewer} #{png_file}"
     end
+
+    watch_name = "watch_#{name}"
+    desc "watch #{@viewer} ./#{png_file}"
+    task watch_name do
+      # sh "#{@viewer} #{png_file}"
+      sh "bash ./watcher.sh #{@viewer} #{png_file} #{name}"
+    end
+
+
   end
 
   # append tasks to default task
@@ -87,6 +97,7 @@ end
 #
 # tasks for blockdiag files
 #
+
 Dir['**/*.diag'].each do |diag_file|
 
   name      = diag_file[0..-6]
@@ -109,6 +120,7 @@ end
 #
 # tasks for nwdiag files
 #
+
 Dir['**/*.nwdiag'].each do |diag_file|
 
   name      = diag_file[0..-8]
@@ -131,6 +143,7 @@ end
 #
 # tasks for seqdiag files
 #
+
 Dir['**/*.seqdiag'].each do |diag_file|
 
   name      = diag_file[0..-9]
@@ -153,6 +166,7 @@ end
 #
 # tasks for actdiag files
 #
+
 Dir['**/*.actdiag'].each do |diag_file|
 
   name      = diag_file[0..-9]

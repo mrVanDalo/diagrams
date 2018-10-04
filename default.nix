@@ -13,6 +13,9 @@ stdenv.mkDerivation rec {
   };
 
   buildInputs = [
+    graphviz
+    mscgen
+
     blockdiag
     nwdiag
     seqdiag
