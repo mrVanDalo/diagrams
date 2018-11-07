@@ -3,7 +3,8 @@
 # configuration
 #
 
-@viewer = "feh" # just comment out if you don't want the viewr task
+@viewer = "feh"      # just comment out if you don't want the viewr task
+@watch_folder = "**" # which folder to scan for diagrams
 
 #
 # default task
@@ -52,21 +53,21 @@ end
 # tasks for dot files
 #
 
-Dir['**/*.dot'].each do |dot_file|
+Dir["#{@watch_folder}/*.dot"].each do |file|
 
-  name      = dot_file[0..-5]
+  name      = file[0..-5]
   svg_file  = "#{name}.svg"
   png_file  = "#{name}.png"
 
   task svg_file do
-    sh "dot -Tsvg -o #{svg_file} #{dot_file}"
+    sh "dot -Tsvg -o #{svg_file} #{file}"
   end
 
   task png_file do
-    sh "dot -Tpng -o #{png_file} #{dot_file}"
+    sh "dot -Tpng -o #{png_file} #{file}"
   end
 
-  rest_tasks(name, dot_file, png_file, svg_file)
+  rest_tasks(name, file, png_file, svg_file)
 
 end
 
@@ -75,22 +76,22 @@ end
 # tasks for msc files
 #
 
-Dir['**/*.msc'].each do |msc_file|
+Dir["#{@watch_folder}/*.msc"].each do |file|
 
-  name      = msc_file[0..-5]
+  name      = file[0..-5]
   svg_file  = "#{name}.svg"
   png_file  = "#{name}.png"
 
 
   task svg_file do
-    sh "mscgen -T svg -o #{name}.svg #{msc_file}"
+    sh "mscgen -T svg -o #{name}.svg #{file}"
   end
 
   task png_file do
-    sh "mscgen -T png -o #{name}.png #{msc_file}"
+    sh "mscgen -T png -o #{name}.png #{file}"
   end
 
-  rest_tasks(name, msc_file, png_file, svg_file)
+  rest_tasks(name, file, png_file, svg_file)
 
 end
 
@@ -98,22 +99,22 @@ end
 # tasks for blockdiag files
 #
 
-Dir['**/*.diag'].each do |diag_file|
+Dir["#{@watch_folder}/*.diag"].each do |file|
 
-  name      = diag_file[0..-6]
+  name      = file[0..-6]
   svg_file  = "#{name}.svg"
   png_file  = "#{name}.png"
 
 
   task svg_file do
-    sh "blockdiag -Tsvg -o #{name}.svg #{diag_file}"
+    sh "blockdiag -Tsvg -o #{name}.svg #{file}"
   end
 
   task png_file do
-    sh "blockdiag --no-transparency -Tpng -o #{name}.png #{diag_file}"
+    sh "blockdiag --no-transparency -Tpng -o #{name}.png #{file}"
   end
 
-  rest_tasks(name, diag_file, png_file, svg_file)
+  rest_tasks(name, file, png_file, svg_file)
 
 end
 
@@ -121,22 +122,22 @@ end
 # tasks for nwdiag files
 #
 
-Dir['**/*.nwdiag'].each do |diag_file|
+Dir["#{@watch_folder}/*.nwdiag"].each do |file|
 
-  name      = diag_file[0..-8]
+  name      = file[0..-8]
   svg_file  = "#{name}.svg"
   png_file  = "#{name}.png"
 
 
   task svg_file do
-    sh "nwdiag -Tsvg -o #{name}.svg #{diag_file}"
+    sh "nwdiag -Tsvg -o #{name}.svg #{file}"
   end
 
   task png_file do
-    sh "nwdiag --no-transparency -Tpng -o #{name}.png #{diag_file}"
+    sh "nwdiag --no-transparency -Tpng -o #{name}.png #{file}"
   end
 
-  rest_tasks(name, diag_file, png_file, svg_file)
+  rest_tasks(name, file, png_file, svg_file)
 
 end
 
@@ -144,22 +145,22 @@ end
 # tasks for seqdiag files
 #
 
-Dir['**/*.seqdiag'].each do |diag_file|
+Dir["#{@watch_folder}/*.seqdiag"].each do |file|
 
-  name      = diag_file[0..-9]
+  name      = file[0..-9]
   svg_file  = "#{name}.svg"
   png_file  = "#{name}.png"
 
 
   task svg_file do
-    sh "seqdiag -Tsvg -o #{name}.svg #{diag_file}"
+    sh "seqdiag -Tsvg -o #{name}.svg #{file}"
   end
 
   task png_file do
-    sh "seqdiag --no-transparency -Tpng -o #{name}.png #{diag_file}"
+    sh "seqdiag --no-transparency -Tpng -o #{name}.png #{file}"
   end
 
-  rest_tasks(name, diag_file, png_file, svg_file)
+  rest_tasks(name, file, png_file, svg_file)
 
 end
 
@@ -167,21 +168,21 @@ end
 # tasks for actdiag files
 #
 
-Dir['**/*.actdiag'].each do |diag_file|
+Dir["#{@watch_folder}/*.actdiag"].each do |file|
 
-  name      = diag_file[0..-9]
+  name      = file[0..-9]
   svg_file  = "#{name}.svg"
   png_file  = "#{name}.png"
 
 
   task svg_file do
-    sh "actdiag -Tsvg -o #{name}.svg #{diag_file}"
+    sh "actdiag -Tsvg -o #{name}.svg #{file}"
   end
 
   task png_file do
-    sh "actdiag --no-transparency -Tpng -o #{name}.png #{diag_file}"
+    sh "actdiag --no-transparency -Tpng -o #{name}.png #{file}"
   end
 
-  rest_tasks(name, diag_file, png_file, svg_file)
+  rest_tasks(name, file, png_file, svg_file)
 
 end
